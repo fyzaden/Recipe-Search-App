@@ -1,0 +1,27 @@
+header {
+  color: #654531;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px;
+}
+.recipe-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.2rem;
+  color: #654531;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.recipe-items {
+  width: 30%;
+  padding: 1rem;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
