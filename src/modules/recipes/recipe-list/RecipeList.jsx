@@ -1,20 +1,34 @@
-import React from "react";
-import "./RecipeList.css";
+import { useEffect } from "react";
+import {
+  useRecipesDispatch,
+  RECIPE_ACTIONS,
+  useRecipes,
+} from "../RecipesProvider";
+import { fetchRecipesByIngredient } from "../recipeService";
 
-const RecipeList = ({ recipes, onSelectRecipe }) => {
+export const RecipeList = () => {
+  const recipes = useRecipes();
+  const dispatch = useRecipesDispatch();
+
+  useEffect(() => {
+    fetchRecipesByIngredient("chicken_breast").then((recipes) =>
+      dispatch({ type: RECIPE_ACTIONS.update, payload: recipes }),
+    );
+  }, []);
+
   return (
-    <div className="recipe-list">
-      <h1>Top Dishes For You</h1>
-      <div className="recipe-item">
-        {recipes.map((recipe) => (
-          <div key={recipe.id} onClick={() => onSelectRecipe(recipe.id)}>
-            <h3>{recipe.title}</h3>
-            <img src={recipe.strMealThumb} alt={`image of ${recipe.title}`} />
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      {recipes.length > 0 ? (
+        <ul className="recipe-list">
+          {recipes.map((recipe) => (
+            <li key={recipe.idMeal} className="recipe-item">
+              {recipe.strMeal}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="no-recipes">No recipes found</p>
+      )}
+    </>
   );
 };
-
-export default RecipeList;
