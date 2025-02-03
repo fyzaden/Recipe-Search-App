@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { fetchRecipesByIngredient } from "./modules/recipes/recipeService";
 import RecipeList from "./modules/recipes/recipe-list/RecipeList";
-// import { Banner } from "./modules/recipes/banner";
+import { Banner } from "./modules/recipes/banner/banner";
 
 export const App = () => {
   const [recipes, setRecipes] = useState([]);
@@ -24,39 +24,36 @@ export const App = () => {
   };
 
   return (
-    <div>
-      <div className="container">
+    <>
+      <>
         <header>Recipe Search App</header>
         <SearchBar />
-        {/* <Banner /> */}
-        {/* bir resim eklemek istedim banner bölümüne ama hata aldım sayfayı göremediğim için yorum satırına aldım */}
+        <Banner />
+        {selectedRecipe && (
+          <div className="selected-recipe">
+            <h2>{selectedRecipe.strMeal}</h2>
+            <div className="selected-recipe-content">
+              <div>
+                <img
+                  src={selectedRecipe.strMealThumb}
+                  alt={selectedRecipe.strMeal}
+                />
+              </div>
+              <div>
+                <h3>Instructions</h3>
+                <p>{selectedRecipe.strInstructions}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {recipes.length > 0 ? (
-          <ul className="recipe-cards">
-            {recipes.map((recipe) => (
-              <li className="recipe-items" key={recipe.idMeal}>
-                {recipe.strMeal}
-              </li>
-            ))}
-          </ul>
+          <RecipeList recipes={recipes} onSelectRecipe={onSelectRecipe} />
         ) : (
           <p>No recipes found.</p>
         )}
-      </div>
-      <div>
-        {selectedRecipe ? (
-          <div>
-            <h2>{selectedRecipe.strMeal}</h2>
-            <img
-              src={selectedRecipe.strMealThumb}
-              alt={selectedRecipe.strMeal}
-            />
-            <p>{selectedRecipe.strInstructions}</p>
-          </div>
-        ) : (
-          <RecipeList recipes={recipes} onSelectRecipe={onSelectRecipe} />
-        )}
-      </div>
-    </div>
+      </>
+    </>
   );
 };
 

@@ -25,3 +25,31 @@ header {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.selected-recipe {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+}
+.selected-recipe h2 {
+  font-size: 2rem;
+  color: #654531;
+}
+
+.selected-recipe-content {
+  display: flex;
+  gap: 20px;
+}
+
+.selected-recipe-content h3 {
+  margin-top: 0;
+  color: #654531;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.selected-recipe-content p {
+  font-size: 1rem;
+  line-height: 150%;
+  margin: 0;
+}
