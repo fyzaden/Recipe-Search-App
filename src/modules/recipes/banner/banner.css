@@ -1,7 +1,11 @@
 .banner {
   width: 100%;
   height: 362px;
-  background-image: url(/recipe-app/src/images/b1.jpg);
+  /* Make sure you get a better quality image that is wide enough. Try to find an image that has proportions that you actually need for your page. */
+  background-image: url(../../../images/b1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   opacity: 100%;
 }
 

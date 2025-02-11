@@ -1,7 +1,7 @@
 import "./App.css";
 import { AppRouter } from "./AppRouter";
 import Navbar from "./modules/recipes/navbar/Navbar";
-import { UserProvider } from "./modules/user/UserProvider";
+import { UserProvider } from "./modules/user/UserContext";
 import { SearchBar } from "./modules/recipes/search-bar";
 import { Banner } from "./modules/recipes/banner";
 

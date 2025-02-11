@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const Categories = () => {
+export const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Categories = () => {
     };
 
     fetchCategories();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
@@ -22,12 +22,10 @@ const Categories = () => {
       <ul>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link to={`/category/${category.id}`}>{category.name}</Link>
+            <Link to={`/categories/${category.id}`}>{category.name}</Link>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
-export default Categories;
