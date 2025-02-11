@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -40,6 +41,12 @@ export const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <p className="mt-4 text-center">
+        Don't have an account?{" "}
+        <Link to="/register" className="text-blue-500 hover:underline">
+          Register here
+        </Link>
+      </p>
     </div>
   );
 };

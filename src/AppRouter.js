@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./modules/home/Home"; // Home'u import ettik
+import { Home } from "./modules/home/Home";
 import Categories from "./Categories";
 import { CreateRecipe } from "./modules/user/CreateRecipe";
 import { Favorites } from "./modules/user/Favorites";
@@ -8,6 +8,7 @@ import { About } from "./modules/recipes/about/About";
 import { Login } from "./modules/user/Login";
 import { Logout } from "./modules/user/Logout";
 import { RecipeList } from "./modules/recipes/recipe-list/RecipeList";
+import Register from "./modules/user/Register";
 
 export const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ export const AppRouter = () => {
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/register" element={<Register />} />
       <Route path="*" element={<h1>Page not found</h1>} />
     </Routes>
   );
