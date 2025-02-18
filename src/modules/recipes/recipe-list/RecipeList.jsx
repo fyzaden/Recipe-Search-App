@@ -5,6 +5,7 @@ import {
   useRecipes,
 } from "../RecipesProvider";
 import { fetchRecipesByIngredient } from "../recipeService";
+import "./RecipeList.css";
 
 export const RecipeList = () => {
   const recipes = useRecipes();
