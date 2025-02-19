@@ -1,22 +1,17 @@
 import "./App.css";
 import { AppRouter } from "./AppRouter";
-import Navbar from "./modules/recipes/navbar/Navbar";
-import { UserProvider } from "./modules/user/UserContext";
-import { SearchBar } from "./modules/recipes/search-bar";
+import { Navbar } from "./modules/shared-components/Navbar";
 import { Banner } from "./modules/recipes/banner/banner";
 
 export const App = () => {
   return (
-    <UserProvider>
-      <>
-        <header>Recipe Search App</header>
+    <>
+      <Navbar />
+      <Banner />
+
+      <div className="container">
         <AppRouter />
-        <Navbar />
-        <SearchBar />
-        <Banner />
-      </>
-    </UserProvider>
+      </div>
+    </>
   );
 };
-
-export default App;

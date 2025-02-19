@@ -5,9 +5,8 @@ import {
   useRecipes,
 } from "../RecipesProvider";
 import { fetchRecipesByIngredient } from "../recipeService";
-import "./RecipeList.css";
 
-export const RecipeList = () => {
+export const FeaturedRecipes = () => {
   const recipes = useRecipes();
   const dispatch = useRecipesDispatch();
 
@@ -15,8 +14,9 @@ export const RecipeList = () => {
     fetchRecipesByIngredient("chicken_breast").then((recipes) =>
       dispatch({ type: RECIPE_ACTIONS.update, payload: recipes }),
     );
-  }, []);
+  }, [dispatch]);
 
+  // Use RecipeList component to display the list of recipe below
   return (
     <>
       {recipes.length > 0 ? (
