@@ -9,9 +9,10 @@ export const RECIPE_ACTIONS = {
 export const RecipesContext = createContext();
 export const RecipesDispatchContext = createContext();
 
-export const RecipesProvider = ({ children, initialState }) => {
-  const [recipes, dispatch] = useReducer(userReducer, initialState ?? []);
+export const RecipesProvider = ({ children, initialState = [] }) => {
+  const [recipes, dispatch] = useReducer(recipeReducer, initialState ?? []);
 
+  console.log("RecipesProvider Render Edildi, children:", children);
   return (
     <RecipesContext.Provider value={recipes}>
       <RecipesDispatchContext.Provider value={dispatch}>
@@ -21,7 +22,7 @@ export const RecipesProvider = ({ children, initialState }) => {
   );
 };
 
-function userReducer(state, action) {
+function recipeReducer(state, action) {
   switch (action.type) {
     case RECIPE_ACTIONS.update: {
       console.log("Incoming action", action, state);

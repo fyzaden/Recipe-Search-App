@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { RecipesProvider } from "../RecipesProvider";
 
 export const NewRecipeForm = () => {
   const {
@@ -7,14 +8,40 @@ export const NewRecipeForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm({
-    strMeal: "",
-    strCategory: "Beef",
+    defaultValues: {
+      strMeal: "",
+      strCategory: "Beef",
+      strInstructions: "",
+      strIngredient: "",
+      strMealThumb: "",
+      cookingTime: "",
+    },
   });
+  const categories = watch(
+    "strCategory",
+    "cookingTime",
+    "strIngredient",
+    "strMealThumb",
+    "strMeal",
+    "strInstructions",
+  );
+
+  const { addRecipe } = RecipesProvider();
 
   const onSubmit = (data) => {
-    console.log("Form submitted:", data);
-    // TODO: Add new recipe data to Recipe store (Context)
+    const formattedRecipe = {
+      id: Date.now(),
+      title: data.strMeal,
+      category: data.strCategory,
+      instructions: data.strInstructions,
+      ingredients: data.strIngredient.split(",").map((item) => item.trim()),
+      image: data.strMealThumb,
+      cookingTime: parseInt(data.cookingTime, 10),
+    };
+    addRecipe(formattedRecipe);
+    reset();
   };
 
   return (
@@ -38,6 +65,41 @@ export const NewRecipeForm = () => {
           </option>
         ))}
       </select>
+
+      <label htmlFor="strIngredient">Ingredients</label>
+      <input
+        id="strIngredient"
+        {...register("strIngredient", {
+          required: "Please enter at least one ingredient.",
+        })}
+      />
+      {errors.strIngredient && (
+        <p className="error">{errors.strIngredient.message}</p>
+      )}
+      <label htmlFor="strInstructions">Instructions</label>
+      <textarea
+        id="strInstructions"
+        {...register("strInstructions", {
+          required: "Instructions are required.",
+        })}
+      />
+      {errors.strInstructions && (
+        <p className="error">{errors.strInstructions.message}</p>
+      )}
+
+      <label htmlFor="strMealThumb">Image URL</label>
+      <input id="strMealThumb" {...register("strMealThumb")} />
+
+      <label htmlFor="cookingTime">Cooking Time (minutes)</label>
+      <input
+        type="number"
+        id="cookingTime"
+        {...register("cookingTime", { required: "Cooking time is required." })}
+      />
+      {errors.cookingTime && (
+        <p className="error">{errors.cookingTime.message}</p>
+      )}
+
       <button type="submit">Submit</button>
     </form>
   );
