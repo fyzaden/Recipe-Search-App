@@ -5,22 +5,8 @@ import { FeaturedRecipes } from "./modules/recipes/FeaturedRecipes";
 import { RecipeDetails } from "./modules/recipes/RecipeDetails";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { Login } from "./modules/user/Login";
-/*
-Lesson 38 TODOs:
-1. Add recipes pages routes:
-  + One the main app page, only display featured information
-  + Add a Search dedicated page
-  - Add Categories page
-    - Create Recipe List page
-  + Add Recipe details page
-  - Add Create new recipe page
-2.  Implement Protected Routes:
-  - Create new recipe page
-  + Settings page
-  + User page
-3. Implement 404 Page (catch-all route for undefined paths):
-
-*/
+import { NewRecipeForm } from "./modules/recipes/NewRecipeForm";
+import Register from "./modules/user/Register";
 
 export const AppRouter = () => {
   return (
@@ -34,6 +20,7 @@ export const AppRouter = () => {
           </ProtectedRoute>
         }
       />
+      <Route path="/register" element={<Register />} />
 
       <Route
         path="/settings"
@@ -54,6 +41,8 @@ export const AppRouter = () => {
             </>
           }
         />
+
+        <Route path="new" element={<NewRecipeForm />} />
         <Route path=":recipeId" element={<RecipeDetails />} />
       </Route>
 
